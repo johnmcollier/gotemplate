@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cw-gogotet-dccf38f0-160f-11ea-ab26
+  labels:
+    chart: gotemplate-0.1.0
+    projectID: dccf38f0-160f-11ea-ab26-791dd12c33b3
+    release: cw-gogotet-dccf38f0-160f-11ea-ab26
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: codewind-workspace798zbeq2cf3esdnq-6f76c8dbbc
+    uid: dce9dd7b-160d-11ea-92b4-00000a1012bc
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 8000
+  selector:
+    app: gotemplate-selector
+    release: cw-gogotet-dccf38f0-160f-11ea-ab26

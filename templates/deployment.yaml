@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cw-gogotet-dccf38f0-160f-11ea-ab26
+  labels:
+    chart: gotemplate-0.1.0
+    release: cw-gogotet-dccf38f0-160f-11ea-ab26
+    projectID: dccf38f0-160f-11ea-ab26-791dd12c33b3
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: codewind-workspace798zbeq2cf3esdnq-6f76c8dbbc
+    uid: dce9dd7b-160d-11ea-92b4-00000a1012bc
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gotemplate-selector
+        version: current
+        release: cw-gogotet-dccf38f0-160f-11ea-ab26
+        projectID: dccf38f0-160f-11ea-ab26-791dd12c33b3
+    spec:
+      containers:
+      - name: gotemplate
+        image: docker.io/johncollier/cw-gogotet-dccf38f0-160f-11ea-ab26:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8000
+        resources: null
+        env:
+        - name: PORT
+          value: "8000"
+      serviceAccountName: che-workspace
